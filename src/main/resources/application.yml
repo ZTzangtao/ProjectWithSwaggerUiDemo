@@ -1,0 +1,63 @@
+#服务端口号
+server:
+  port: 8085
+
+#实例及注册中心配置
+#eureka:
+#  instance:
+#    hostname: localhost
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8080/eureka/
+
+#mysql config
+spring:
+  application:
+    name: la-api-information                             #应用名称
+  #  cloud:
+  #    config:
+  #      discovery:
+  #        enabled: true                             #开启配置服务发现
+  #        service-id: la-api-config                 #配置中心service-id
+  #      label: develop                              #配置仓库分支
+  #      profile: dev                                #配置文件类型
+  #      name: ${spring.application.name}            #配置文件名称
+  #      username: linan                             #配置中心用户名
+  #      password: linan@2019                        #配置中心密码
+  #      fail-fast: true                             #连接配置中心失败快速响应
+  #      retry:
+  #        initial-interval: 2000                    #初始连接时间间隔
+  #        max-interval: 6000                        #最大时间间隔
+  #        max-attempts: 10                          #最大重试次数
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://106.75.105.96:5508/lin_an?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+    username: develop
+    password: Develop@2019
+    type: com.alibaba.druid.pool.DruidDataSource
+
+#mybatis-plus映射
+mybatis-plus:
+  #开启下划线转驼峰
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath*:/mapper/*.xml
+  #配置mybatis-plus逻辑删除
+  global-config:
+    db-config:
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+      table-underline: true
+      field-strategy: not_null   #不插入空值进来
+
+#slf4j配置
+#logging:
+#  config: /resources/logback.xml
+#查看所有的spring bean http://localhost:8085/actuator/beans
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+

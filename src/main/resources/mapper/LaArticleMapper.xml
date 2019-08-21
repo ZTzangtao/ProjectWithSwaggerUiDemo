@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bbd.core.mapper.LaArticleMapper">
+
+    <select id="articleQueryList" resultType="com.bbd.core.resp.ArticleResp" >
+        select la.show_id,lat.name as type,la.title,la.image_id,la.content,la.create_by
+        from la_article la
+        left join la_article_type lat on lat.id = la.type_id
+        where la.del_flag = 0 and la.status = 1
+        <if test="type != null and type != '' ">
+            and la.type = #{type}
+        </if>
+        <if test="title != null and title != '' ">
+            and la.title like concat('%', #{title} ,'%')
+        </if>
+    </select>
+
+    <select id="articleQueryDetail" resultType="com.bbd.core.resp.ArticleDetailResp">
+        select la.show_id,lat.name as type,la.title,la.image_id,la.content,la.create_by,la.create_date
+        from la_article la
+        left join la_article_type lat on lat.id = la.type_id
+        where la.del_flag = 0 and la.show_id = #{showId} and lat.del_flag = 0
+    </select>
+
+    <select id="judgeOffShowId" resultType="com.bbd.core.entity.LaArticle">
+        select article_id
+        from la_article
+        where show_id = #{showId} and online = #{online} and del_flag = 0
+    </select>
+
+</mapper>
