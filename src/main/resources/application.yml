@@ -31,9 +31,9 @@ spring:
   #        max-attempts: 10                          #最大重试次数
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://122.51.139.132:3306/lin_an?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
-    username: root
-    password: 1qaz@WSX
+    url: jdbc:mysql://106.75.105.96:5508/lin_an?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+    username: develop
+    password: Develop@2019
     type: com.alibaba.druid.pool.DruidDataSource
 
   #redis
